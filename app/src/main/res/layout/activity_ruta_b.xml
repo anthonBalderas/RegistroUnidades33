@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".Ruta44">
+    tools:context=".RutaBActivity">
 
 
     <LinearLayout
@@ -22,8 +22,9 @@
             android:textColor="@color/letras"
             android:textSize="16dp" />
 
+
         <EditText
-            android:id="@+id/edittext_unidad"
+            android:id="@+id/edittext_unidad3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
@@ -34,7 +35,7 @@
     </LinearLayout>
 
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-        android:id="@+id/rutas_spinner2"
+        android:id="@+id/rutas_spinner3"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center"
@@ -46,7 +47,7 @@
         app:hintText="Click para seleccionar una ruta" />
 
     <TextView
-        android:id="@+id/tvHora2"
+        android:id="@+id/tvHora3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -54,18 +55,19 @@
         android:textColor="@color/letras" />
 
     <Button
-        android:id="@+id/button_add2"
+        android:id="@+id/button_add3"
         android:layout_width="match_parent"
         android:layout_height="31dp"
         android:layout_alignTop="@+id/button_increase"
         android:layout_alignBottom="@+id/button_increase"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         android:layout_toEndOf="@+id/button_increase"
         android:layout_toRightOf="@+id/button_increase"
         android:background="@color/materialgreen"
         android:text="Registrar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -143,16 +145,18 @@
 
 
     </LinearLayout>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Lista de unidades B"
+        android:text="Lista de unidades C"
         android:textColor="@color/letras"
         android:textSize="19sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview2"
+        android:id="@+id/recyclerview3"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/textview_amount"

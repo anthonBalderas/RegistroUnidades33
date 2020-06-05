@@ -228,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                        Toast.makeText(MainActivity.this, "Selecciona una ruta", Toast.LENGTH_SHORT).show();
                 } else {
                     String sNumeroRuta = parent.getItemAtPosition(position).toString();
                 }

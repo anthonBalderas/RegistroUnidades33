@@ -82,7 +82,7 @@ public class InicioSesionActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+/*    @Override
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()!= null){
@@ -90,5 +90,5 @@ public class InicioSesionActivity extends AppCompatActivity {
             startActivity(intentInicioSesion);
             finish();
         }
-    }
+    }*/
 }

@@ -1,13 +1,10 @@
 package com.example.balderasx;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -23,6 +20,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.text.SimpleDateFormat;
@@ -31,11 +34,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class Ruta44 extends AppCompatActivity {
+public class RutaBActivity extends AppCompatActivity {
 
     private SQLiteDatabase mDatabase;
-    private EditText mEditTextUnidad;
-    private Button btnAdd2;
+    private EditText mEditTextUnidad3;
+    private Button btnAdd3;
 
 
     private CountDownTimer mCountDownTimer;
@@ -45,28 +48,30 @@ public class Ruta44 extends AppCompatActivity {
     private long mEndTime;
 
     EditText intervaloInput;
-    TextView tvHora2, countDownText;
+    TextView tvHora3, countDownText;
     Button btnStartPause, btnReset, btnSetIntervalo;
     SearchableSpinner mSpinnerRuta;
-    RecyclerView recyclerView2;
-    Unidades2Adapter mAdapter;
+
+    RecyclerView recyclerView3;
+    Unidades3Adapter mAdapter;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_ruta44);
+        setContentView(R.layout.activity_ruta_b);
+
 
         UnidadesDBHelper dbHelper = new UnidadesDBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
 
-        tvHora2 = findViewById(R.id.tvHora2);
-        mEditTextUnidad = findViewById(R.id.edittext_unidad);
-        btnAdd2 = findViewById(R.id.button_add2);
+        tvHora3 = findViewById(R.id.tvHora3);
+        mEditTextUnidad3    = findViewById(R.id.edittext_unidad3);
+        btnAdd3 = findViewById(R.id.button_add3);
 
 
-        mSpinnerRuta = findViewById(R.id.rutas_spinner2);
+        mSpinnerRuta = findViewById(R.id.rutas_spinner3);
         btnSetIntervalo = findViewById(R.id.btn_set_minutes);
         btnStartPause = findViewById(R.id.button_start_pause);
         btnReset = findViewById(R.id.button_reset);
@@ -74,16 +79,16 @@ public class Ruta44 extends AppCompatActivity {
         intervaloInput = findViewById(R.id.set_minutes);
 
 
-        recyclerView2 = findViewById(R.id.recyclerview2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new Unidades2Adapter(this,getAllItems());
-       new ItemTouchHelper(ItemTouchHelperCallback2).attachToRecyclerView(recyclerView2);
-        recyclerView2.setAdapter(mAdapter);
+        recyclerView3 = findViewById(R.id.recyclerview3);
+        recyclerView3.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new Unidades3Adapter(this,getAllItems());
+        new ItemTouchHelper(ItemTouchHelperCallback3).attachToRecyclerView(recyclerView3);
+        recyclerView3.setAdapter(mAdapter);
 
-        setBotones();
         crearListaRuta();
+        setBotones();
 
-        btnAdd2.setOnClickListener(new View.OnClickListener() {
+        btnAdd3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarHora();
@@ -95,16 +100,16 @@ public class Ruta44 extends AppCompatActivity {
 
     private void addItem() {
 
-        String name = mEditTextUnidad.getText().toString();
-        String hora = tvHora2.getText().toString();
+        String name = mEditTextUnidad3.getText().toString();
+        String hora = tvHora3.getText().toString();
         String ruta = mSpinnerRuta.getSelectedItem().toString();
         ContentValues cv = new ContentValues();
-        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_HORA, name);
-        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_UNIDAD, hora);
-        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_RUTA,ruta);
-        mDatabase.insert(UnidadesContract.UnidadesEntry2.TABLE_NAME, null, cv);
+        cv.put(UnidadesContract.UnidadesEntry3.COLUMN_HORA, name);
+        cv.put(UnidadesContract.UnidadesEntry3.COLUMN_UNIDAD, hora);
+        cv.put(UnidadesContract.UnidadesEntry3.COLUMN_RUTA,ruta);
+        mDatabase.insert(UnidadesContract.UnidadesEntry3.TABLE_NAME, null, cv);
         mAdapter.swapCursor(getAllItems());
-        mEditTextUnidad.getText().clear();
+        mEditTextUnidad3.getText().clear();
 
     }
     private void registrarHora() {
@@ -113,9 +118,8 @@ public class Ruta44 extends AppCompatActivity {
         Date horaRegistro = Calendar.getInstance().getTime();
 
         String horaa = formato.format(horaRegistro);
-        tvHora2.setText(horaa);
+        tvHora3.setText(horaa);
     }
-
 
     public void crearListaRuta() {
         ArrayList<String> rutaList = new ArrayList<>();
@@ -194,7 +198,7 @@ public class Ruta44 extends AppCompatActivity {
         rutaList.add("La Joya");
         rutaList.add("94");
 
-            mSpinnerRuta.setAdapter(new ArrayAdapter<>(Ruta44.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
+            mSpinnerRuta.setAdapter(new ArrayAdapter<>(RutaBActivity.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
         mSpinnerRuta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -214,17 +218,17 @@ public class Ruta44 extends AppCompatActivity {
     private Cursor getAllItems() {
 
         return mDatabase.query(
-                UnidadesContract.UnidadesEntry2.TABLE_NAME,
+                UnidadesContract.UnidadesEntry3.TABLE_NAME,
                 null,
                 null,
                 null,
                 null,
                 null,
-                UnidadesContract.UnidadesEntry2.COLUMN_TIMESTAMP + " ASC"
+                UnidadesContract.UnidadesEntry3.COLUMN_TIMESTAMP + " ASC"
         );
     }
 
-    ItemTouchHelper.SimpleCallback ItemTouchHelperCallback2 = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback ItemTouchHelperCallback3 = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -232,13 +236,17 @@ public class Ruta44 extends AppCompatActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        removeItem((long) viewHolder.itemView.getTag());
+
+
+            removeItem((long) viewHolder.itemView.getTag());
         }
     };
     private void removeItem(long id){
 
-        mDatabase.delete(UnidadesContract.UnidadesEntry2.TABLE_NAME,
-                UnidadesContract.UnidadesEntry2._ID + "=" + id,null);
+
+
+        mDatabase.delete(UnidadesContract.UnidadesEntry3.TABLE_NAME,
+                UnidadesContract.UnidadesEntry3._ID + "=" + id,null);
 
 
     }
@@ -249,12 +257,12 @@ public class Ruta44 extends AppCompatActivity {
             public void onClick(View v) {
                 String input = intervaloInput.getText().toString();
                 if (input.length() == 0) {
-                    Toast.makeText(Ruta44.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RutaBActivity.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long millisInput = Long.parseLong(input) * 60000;
                 if (millisInput == 0) {
-                    Toast.makeText(Ruta44.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RutaBActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 setTime(millisInput);
@@ -367,13 +375,13 @@ public class Ruta44 extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
-        SharedPreferences.Editor editor2 = prefs2.edit();
-        editor2.putLong("startTimeInMillis", mStartTimeInMillis);
-        editor2.putLong("millisLeft", mtimeLeftInMilliSeconds);
-        editor2.putBoolean("timerRunning", mtimerRunning);
-        editor2.putLong("endTime", mEndTime);
-        editor2.apply();
+        SharedPreferences prefs3 = getSharedPreferences("prefs3", MODE_PRIVATE);
+        SharedPreferences.Editor editor3 = prefs3.edit();
+        editor3.putLong("startTimeInMillis", mStartTimeInMillis);
+        editor3.putLong("millisLeft", mtimeLeftInMilliSeconds);
+        editor3.putBoolean("timerRunning", mtimerRunning);
+        editor3.putLong("endTime", mEndTime);
+        editor3.apply();
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
         }
@@ -382,14 +390,14 @@ public class Ruta44 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
-        mStartTimeInMillis = prefs2.getLong("startTimeInMillis", 600000);
-        mtimeLeftInMilliSeconds = prefs2.getLong("millisLeft", mStartTimeInMillis);
-        mtimerRunning = prefs2.getBoolean("timerRunning", false);
+        SharedPreferences prefs3 = getSharedPreferences("prefs3", MODE_PRIVATE);
+        mStartTimeInMillis = prefs3.getLong("startTimeInMillis", 600000);
+        mtimeLeftInMilliSeconds = prefs3.getLong("millisLeft", mStartTimeInMillis);
+        mtimerRunning = prefs3.getBoolean("timerRunning", false);
         updateCountDownText();
         updateWatchInterface();
         if (mtimerRunning) {
-            mEndTime = prefs2.getLong("endTime", 0);
+            mEndTime = prefs3.getLong("endTime", 0);
             mtimeLeftInMilliSeconds = mEndTime - System.currentTimeMillis();
             if (mtimeLeftInMilliSeconds < 0) {
                 mtimeLeftInMilliSeconds = 0;
@@ -401,4 +409,6 @@ public class Ruta44 extends AppCompatActivity {
             }
         }
     }
-}
+
+    }
+
