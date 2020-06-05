@@ -34,10 +34,10 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/btn_agregar"
+                    android:id="@+id/btn_agregar_A"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/circulomorado"
+                    android:background="@drawable/circuloverde"
                     android:contentDescription="TODO"
                     android:padding="10dp"
                     android:src="@drawable/ic_add" />
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Agregar"
+                    android:text="Agregar A"
                     android:textColor="@color/lightgray"
                     android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Agrega una unidad"
+                    android:text="Agrega una unidad a lista A"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -86,7 +86,7 @@
                     android:id="@+id/btn_listas"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/circulorosado"
+                    android:background="@drawable/circulomorado"
                     android:padding="10dp"
                     android:src="@drawable/ic_list" />
 
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Lista de unidades guardadas"
+                    android:text="Ver las listas registradas"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -139,7 +139,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/btn_agregar_listas"
+                    android:id="@+id/btn_agregar_B"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circuloverde"
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Agrega Lista"
+                    android:text="Agregar B"
                     android:textColor="@color/lightgray"
                     android:textStyle="bold" />
 
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Lista de rutas"
+                    android:text="Agregar una unidad a lista B"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -191,13 +191,13 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circuloamarillo"
                     android:padding="10dp"
-                    android:src="@drawable/ic_list" />
+                    android:src="@drawable/ic_payment" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Pagos"
+                    android:text="Pago"
                     android:textColor="@color/lightgray"
                     android:textStyle="bold" />
 
@@ -219,7 +219,6 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -228,14 +227,13 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="340dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
@@ -243,18 +241,18 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/btn_historial"
+                    android:id="@+id/btn_agregar_C"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/circulorosado"
+                    android:background="@drawable/circuloverde"
                     android:padding="10dp"
-                    android:src="@drawable/ic_history" />
+                    android:src="@drawable/ic_add" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Historial"
+                    android:text="Agregar C"
                     android:textColor="@color/lightgray"
                     android:textStyle="bold" />
 
@@ -269,12 +267,56 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Revisa el historial de transportes"
+                    android:text="Agregar una unidad a lista C"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btn_cerrar_sesion"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circulorosado"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_out" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Cierra Sesion"
+                    android:textColor="@color/lightgray"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/lightgray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </LinearLayout>

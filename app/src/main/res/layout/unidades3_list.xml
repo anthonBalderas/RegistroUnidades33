@@ -71,27 +71,28 @@
                     android:layout_marginLeft="170dp"
                     android:src="@drawable/ic_delete_sweep"></ImageView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <TextView
+                <TextView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ruta: "
-                android:textColor="@color/letras"
-                android:textSize="22sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ruta: "
+                    android:textColor="@color/letras"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/textview_ruta_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="Empty Item"
-                android:textColor="@color/letras"
-                android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/textview_ruta_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Empty Item"
+                    android:textColor="@color/letras"
+                    android:textSize="22sp" />
 
             </LinearLayout>
         </LinearLayout>

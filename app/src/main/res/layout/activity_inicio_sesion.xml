@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".InicioSesionActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="Bienvenido \n inicia sesión para continuar"
+        android:textColor="@color/colorVerdebtn"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/email_Reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/lightgray"
+        android:textColorHint="@color/lightgray"
+        android:textColorLink="#FFFFFF" />
+
+
+    <EditText
+        android:id="@+id/password_Reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/lightgray"
+        android:textColorHint="@color/lightgray" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Si no tienes una cuenta crea una para continuar."
+        android:textColor="@color/letras"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorVerdebtn"
+        android:text="Iniciar Sesion"
+        android:textColor="#FFFFFF"
+        android:textColorLink="@color/colorVerdebtn" />
+
+    <Button
+        android:id="@+id/btn_ir_a_registrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Crear una cuenta"
+        android:textColor="#FFFFFF" />
+
+
+</LinearLayout>

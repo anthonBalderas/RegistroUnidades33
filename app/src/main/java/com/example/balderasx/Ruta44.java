@@ -20,11 +20,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,10 +31,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class Ruta44 extends AppCompatActivity {
+
     private SQLiteDatabase mDatabase;
-    private UnidadesAdapter mAdapter;
-    private EditText mEditTextName;
+    private EditText mEditTextUnidad;
+    private Button btnAdd2;
 
 
     private CountDownTimer mCountDownTimer;
@@ -44,30 +44,29 @@ public class MainActivity extends AppCompatActivity {
     private boolean mtimerRunning;
     private long mEndTime;
 
-    Spinner mSpinnerRuta;
-
     EditText intervaloInput;
-    TextView tvHora, countDownText;
+    TextView tvHora2, countDownText;
     Button btnStartPause, btnReset, btnSetIntervalo;
-
-    RecyclerView recyclerView;
+    SearchableSpinner mSpinnerRuta;
+    RecyclerView recyclerView2;
+    Unidades2Adapter mAdapter;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ruta44);
 
         UnidadesDBHelper dbHelper = new UnidadesDBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
 
-        mSpinnerRuta = findViewById(R.id.rutas_spinner);
+        tvHora2 = findViewById(R.id.tvHora2);
+        mEditTextUnidad = findViewById(R.id.edittext_unidad);
+        btnAdd2 = findViewById(R.id.button_add2);
 
-        tvHora = findViewById(R.id.tvHora);
-        mEditTextName = findViewById(R.id.edittext_name);
 
+        mSpinnerRuta = findViewById(R.id.rutas_spinner2);
         btnSetIntervalo = findViewById(R.id.btn_set_minutes);
         btnStartPause = findViewById(R.id.button_start_pause);
         btnReset = findViewById(R.id.button_reset);
@@ -75,17 +74,16 @@ public class MainActivity extends AppCompatActivity {
         intervaloInput = findViewById(R.id.set_minutes);
 
 
-        Button buttonAdd = findViewById(R.id.button_add);
-        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView2 = findViewById(R.id.recyclerview2);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new Unidades2Adapter(this,getAllItems());
+       new ItemTouchHelper(ItemTouchHelperCallback2).attachToRecyclerView(recyclerView2);
+        recyclerView2.setAdapter(mAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new UnidadesAdapter(this, getAllItems());
-        new ItemTouchHelper(ItemTouchHelperCallback).attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(mAdapter);
-
-        crearListaRuta();
         setBotones();
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        crearListaRuta();
+
+        btnAdd2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarHora();
@@ -93,58 +91,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void addItem() {
 
-        String name = mEditTextName.getText().toString();
-        String hora = tvHora.getText().toString();
+        String name = mEditTextUnidad.getText().toString();
+        String hora = tvHora2.getText().toString();
         String ruta = mSpinnerRuta.getSelectedItem().toString();
-
         ContentValues cv = new ContentValues();
-        cv.put(UnidadesContract.UnidadesEntry.COLUMN_HORA, name);
-        cv.put(UnidadesContract.UnidadesEntry.COLUMN_UNIDAD, hora);
-        cv.put(UnidadesContract.UnidadesEntry.COLUMN_RUTA,ruta);
-
-        mDatabase.insert(UnidadesContract.UnidadesEntry.TABLE_NAME, null, cv);
+        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_HORA, name);
+        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_UNIDAD, hora);
+        cv.put(UnidadesContract.UnidadesEntry2.COLUMN_RUTA,ruta);
+        mDatabase.insert(UnidadesContract.UnidadesEntry2.TABLE_NAME, null, cv);
         mAdapter.swapCursor(getAllItems());
-        mEditTextName.getText().clear();
+        mEditTextUnidad.getText().clear();
 
     }
+    private void registrarHora() {
 
-    private void removeItem(long id) {
+        SimpleDateFormat formato = new SimpleDateFormat("hh:mm:ss");
+        Date horaRegistro = Calendar.getInstance().getTime();
 
-        mDatabase.delete(UnidadesContract.UnidadesEntry.TABLE_NAME,
-                UnidadesContract.UnidadesEntry._ID + "=" + id, null);
-        mAdapter.swapCursor(getAllItems());
+        String horaa = formato.format(horaRegistro);
+        tvHora2.setText(horaa);
     }
 
-    private Cursor getAllItems() {
-
-        return mDatabase.query(
-                UnidadesContract.UnidadesEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                UnidadesContract.UnidadesEntry.COLUMN_TIMESTAMP + " ASC"
-        );
-    }
-
-    ItemTouchHelper.SimpleCallback ItemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            removeItem((long) viewHolder.itemView.getTag());
-        }
-    };
 
     public void crearListaRuta() {
         ArrayList<String> rutaList = new ArrayList<>();
@@ -223,12 +194,12 @@ public class MainActivity extends AppCompatActivity {
         rutaList.add("La Joya");
         rutaList.add("94");
 
-            mSpinnerRuta.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
+            mSpinnerRuta.setAdapter(new ArrayAdapter<>(Ruta44.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
         mSpinnerRuta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                        Toast.makeText(MainActivity.this, "Selecciona una ruta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Ruta44.this, "Selecciona una ruta", Toast.LENGTH_SHORT).show();
                 } else {
                     String sNumeroRuta = parent.getItemAtPosition(position).toString();
                 }
@@ -241,13 +212,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void registrarHora() {
+    private Cursor getAllItems() {
 
-        SimpleDateFormat formato = new SimpleDateFormat("hh:mm:ss");
-        Date horaRegistro = Calendar.getInstance().getTime();
+        return mDatabase.query(
+                UnidadesContract.UnidadesEntry2.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                UnidadesContract.UnidadesEntry2.COLUMN_TIMESTAMP + " ASC"
+        );
+    }
 
-        String horaa = formato.format(horaRegistro);
-        tvHora.setText(horaa);
+    ItemTouchHelper.SimpleCallback ItemTouchHelperCallback2 = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        removeItem((long) viewHolder.itemView.getTag());
+        }
+    };
+    private void removeItem(long id){
+
+        mDatabase.delete(UnidadesContract.UnidadesEntry2.TABLE_NAME,
+                UnidadesContract.UnidadesEntry2._ID + "=" + id,null);
+
+
     }
 
     public void setBotones() {
@@ -256,12 +250,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String input = intervaloInput.getText().toString();
                 if (input.length() == 0) {
-                    Toast.makeText(MainActivity.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Ruta44.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long millisInput = Long.parseLong(input) * 60000;
                 if (millisInput == 0) {
-                    Toast.makeText(MainActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Ruta44.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 setTime(millisInput);
@@ -360,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
         mStartTimeInMillis = milliseconds;
         resetTimer();
         // closeKeyboard();
-         intervaloInput.setText("");
+        intervaloInput.setText("");
     }
 
     private void closeKeyboard() {
@@ -374,13 +368,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong("startTimeInMillis", mStartTimeInMillis);
-        editor.putLong("millisLeft", mtimeLeftInMilliSeconds);
-        editor.putBoolean("timerRunning", mtimerRunning);
-        editor.putLong("endTime", mEndTime);
-        editor.apply();
+        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = prefs2.edit();
+        editor2.putLong("startTimeInMillis", mStartTimeInMillis);
+        editor2.putLong("millisLeft", mtimeLeftInMilliSeconds);
+        editor2.putBoolean("timerRunning", mtimerRunning);
+        editor2.putLong("endTime", mEndTime);
+        editor2.apply();
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
         }
@@ -389,14 +383,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000);
-        mtimeLeftInMilliSeconds = prefs.getLong("millisLeft", mStartTimeInMillis);
-        mtimerRunning = prefs.getBoolean("timerRunning", false);
+        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
+        mStartTimeInMillis = prefs2.getLong("startTimeInMillis", 600000);
+        mtimeLeftInMilliSeconds = prefs2.getLong("millisLeft", mStartTimeInMillis);
+        mtimerRunning = prefs2.getBoolean("timerRunning", false);
         updateCountDownText();
         updateWatchInterface();
         if (mtimerRunning) {
-            mEndTime = prefs.getLong("endTime", 0);
+            mEndTime = prefs2.getLong("endTime", 0);
             mtimeLeftInMilliSeconds = mEndTime - System.currentTimeMillis();
             if (mtimeLeftInMilliSeconds < 0) {
                 mtimeLeftInMilliSeconds = 0;

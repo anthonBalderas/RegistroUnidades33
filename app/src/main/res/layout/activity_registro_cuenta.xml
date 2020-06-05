@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".RegistroCuentaActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:text="Ingresa tus datos para crear una cuenta"
+        android:textColor="@color/colorVerdebtn"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/nombre_Reg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nombre_Reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:textColor="@color/lightgray"
+        android:textColorHint="@color/lightgray"
+        app:layout_constraintBottom_toTopOf="@+id/email_Reg"
+        android:backgroundTint="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/email_Reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:backgroundTint="@color/colorAccent"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/lightgray"
+        android:textColorHint="@color/letras"
+     />
+
+    <EditText
+        android:id="@+id/password_Reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:ems="10"
+        android:hint="Password"
+        android:backgroundTint="@color/colorAccent"
+        android:inputType="textPassword"
+        android:textColor="@color/lightgray"
+        android:textColorHint="@color/lightgray"
+        />
+
+    <Button
+        android:id="@+id/btn_SignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorVerdebtn"
+        android:gravity="center"
+        android:text="Registrarse"
+        android:textColor="#C9F8F3F3" />
+
+    <Button
+        android:id="@+id/btn_ir_SignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:text="Ya tengo cuenta"
+        android:textColor="#FBF9F9" />
+
+</LinearLayout>
