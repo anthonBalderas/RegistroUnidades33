@@ -8,7 +8,7 @@ import com.example.balderasx.UnidadesContract.*;
 
 public class UnidadesDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "unidadesList.db";
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 12;
 
     public UnidadesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,6 +48,38 @@ public class UnidadesDBHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_UNIDADESLIST3_TABLE);
 
+        final String SQL_CREATE_UNIDAD_HISTORIAL_TABLE = "CREATE TABLE " +
+                    UnidadesEntry4.TABLE_NAME + " ( " +
+                    UnidadesEntry4._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    UnidadesEntry4.COLUMN_UNIDAD + " TEXT NOT NULL, " +
+                    UnidadesEntry4.COLUMN_HORA + " TEXT NOT NULL, " +
+                    UnidadesEntry4.COLUMN_RUTA + " TEXT NOT NULL," +
+                    UnidadesEntry4.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ");";
+
+        db.execSQL(SQL_CREATE_UNIDAD_HISTORIAL_TABLE);
+
+        final String SQL_CREATE_UNIDAD_HISTORIAL2_TABLE = "CREATE TABLE " +
+                    UnidadesEntry5.TABLE_NAME + " ( " +
+                    UnidadesEntry5._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    UnidadesEntry5.COLUMN_UNIDAD + " TEXT NOT NULL, " +
+                    UnidadesEntry5.COLUMN_HORA + " TEXT NOT NULL, " +
+                    UnidadesEntry5.COLUMN_RUTA + " TEXT NOT NULL," +
+                    UnidadesEntry5.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ");";
+
+        db.execSQL(SQL_CREATE_UNIDAD_HISTORIAL2_TABLE);
+
+        final String SQL_CREATE_UNIDAD_HISTORIAL3_TABLE = "CREATE TABLE " +
+                    UnidadesEntry6.TABLE_NAME + " ( " +
+                    UnidadesEntry6._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    UnidadesEntry6.COLUMN_UNIDAD + " TEXT NOT NULL, " +
+                    UnidadesEntry6.COLUMN_HORA + " TEXT NOT NULL, " +
+                    UnidadesEntry6.COLUMN_RUTA + " TEXT NOT NULL," +
+                    UnidadesEntry6.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ");";
+
+        db.execSQL(SQL_CREATE_UNIDAD_HISTORIAL3_TABLE);
     }
 
     @Override
@@ -55,6 +87,9 @@ public class UnidadesDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry2.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry3.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry4.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry5.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UnidadesEntry6.TABLE_NAME);
         onCreate(db);
 
     }

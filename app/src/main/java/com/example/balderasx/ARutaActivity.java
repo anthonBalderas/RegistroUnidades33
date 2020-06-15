@@ -25,14 +25,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class ARutaActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     private UnidadesAdapter mAdapter;
     private EditText mEditTextName;
@@ -90,10 +89,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 registrarHora();
                 addItem();
+                Toast.makeText(ARutaActivity.this, "Unidad Agregada", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 
@@ -103,13 +101,22 @@ public class MainActivity extends AppCompatActivity {
         String hora = tvHora.getText().toString();
         String ruta = mSpinnerRuta.getSelectedItem().toString();
 
+
         ContentValues cv = new ContentValues();
         cv.put(UnidadesContract.UnidadesEntry.COLUMN_HORA, name);
         cv.put(UnidadesContract.UnidadesEntry.COLUMN_UNIDAD, hora);
-        cv.put(UnidadesContract.UnidadesEntry.COLUMN_RUTA,ruta);
+        cv.put(UnidadesContract.UnidadesEntry.COLUMN_RUTA, ruta);
 
         mDatabase.insert(UnidadesContract.UnidadesEntry.TABLE_NAME, null, cv);
         mAdapter.swapCursor(getAllItems());
+
+        ContentValues cvHist = new ContentValues();
+        cvHist.put(UnidadesContract.UnidadesEntry.COLUMN_HORA, name);
+        cvHist.put(UnidadesContract.UnidadesEntry.COLUMN_UNIDAD, hora);
+        cvHist.put(UnidadesContract.UnidadesEntry.COLUMN_RUTA, ruta);
+        mDatabase.insert(UnidadesContract.UnidadesEntry4.TABLE_NAME, null, cvHist);
+
+
         mEditTextName.getText().clear();
 
     }
@@ -143,87 +150,88 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             removeItem((long) viewHolder.itemView.getTag());
+            Toast.makeText(ARutaActivity.this, "Unidad eliminada", Toast.LENGTH_SHORT).show();
         }
     };
 
     public void crearListaRuta() {
         ArrayList<String> rutaList = new ArrayList<>();
 
-        rutaList.add("44");
-        rutaList.add("68");
-        rutaList.add("Portillo");
-        rutaList.add("95-96");
-        rutaList.add("95-96 Andres Quintana Roo");
-        rutaList.add("México");
+        rutaList.add("3");
         rutaList.add("3 Reyes Portillo");
         rutaList.add("3 Reyes Andres Q.roo");
         rutaList.add("3 Reyes Nichupte");
+        rutaList.add("4");
+        rutaList.add("5");
+        rutaList.add("6");
+        rutaList.add("7X4");
+        rutaList.add("8");
+        rutaList.add("11");
+        rutaList.add("14");
+        rutaList.add("15");
+        rutaList.add("15-A");
+        rutaList.add("15-B");
+        rutaList.add("17");
+        rutaList.add("18-A");
+        rutaList.add("19");
+        rutaList.add("21");
+        rutaList.add("33");
+        rutaList.add("44");
+        rutaList.add("48");
+        rutaList.add("68");
+        rutaList.add("69");
+        rutaList.add("71");
+        rutaList.add("78");
+        rutaList.add("80");
+        rutaList.add("87");
+        rutaList.add("90");
+        rutaList.add("94");
+        rutaList.add("95-96");
+        rutaList.add("95-96 Andres Quintana Roo");
+        rutaList.add("97 - 99 Itzales");
+        rutaList.add("97 - 99 Poligono");
+        rutaList.add("100");
+        rutaList.add("102 Palmas");
+        rutaList.add("103");
+        rutaList.add("227");
+        rutaList.add("236");
+        rutaList.add("259");
+        rutaList.add("295");
+        rutaList.add("510");
         rutaList.add("Avante Portillo");
         rutaList.add("Avante Nichupte");
         rutaList.add("Avante Andres Q,roo");
-        rutaList.add("Valle Verde Portillo");
-        rutaList.add("Valle Verde Andres Q.roo");
-        rutaList.add("Valle Verde Nichupte");
-        rutaList.add("Sta Cecilia Portillo");
-        rutaList.add("Sta Cecilia Andres Q.roo");
-        rutaList.add("Sta Cecilia Nichupte");
+        rutaList.add("Bonfil");
+        rutaList.add("Guayacan");
         rutaList.add("Kusamil");
-        rutaList.add("Paraiso Maya Portillo");
-        rutaList.add("Paraiso Maya Quintana. Roo");
-        rutaList.add("Paraiso Maya Nichupte");
-        rutaList.add("Urbi Nichupte");
-        rutaList.add("Urbi Portillo");
-        rutaList.add("Urbi Andres Q.roo");
+        rutaList.add("La Joya");
+        rutaList.add("Leona Vicario");
+        rutaList.add("México");
         rutaList.add("Milagro Nichupte");
         rutaList.add("Milagro Portillo");
         rutaList.add("Milagro Andres Q.roo");
-        rutaList.add("69");
-        rutaList.add("103");
-        rutaList.add("97 - 99 Itzales");
-        rutaList.add("97 - 99 Poligono");
-        rutaList.add("102 Palmas");
-        rutaList.add("71");
-        rutaList.add("259");
-        rutaList.add("18-A");
-        rutaList.add("90");
-        rutaList.add("100");
-        rutaList.add("19");
-        rutaList.add("87");
-        rutaList.add("78");
-        rutaList.add("15");
-        rutaList.add("15-B");
-        rutaList.add("15-A");
-        rutaList.add("14");
-        rutaList.add("21");
-        rutaList.add("11");
-        rutaList.add("80");
-        rutaList.add("8");
-        rutaList.add("510");
-        rutaList.add("227");
-        rutaList.add("295");
-        rutaList.add("48");
-        rutaList.add("17");
-        rutaList.add("33");
-        rutaList.add("3");
-        rutaList.add("7X4");
-        rutaList.add("236");
-        rutaList.add("6");
-        rutaList.add("4");
-        rutaList.add("5");
-        rutaList.add("Tierra Maya");
-        rutaList.add("Talleres");
-        rutaList.add("Bonfil");
-        rutaList.add("Guayacan");
-        rutaList.add("Puerto Juarez");
-        rutaList.add("Playa Blanca");
-        rutaList.add("Villas del Mar");
-        rutaList.add("Torito");
         rutaList.add("Niños Heroes");
-        rutaList.add("Leona Vicario");
-        rutaList.add("La Joya");
-        rutaList.add("94");
+        rutaList.add("Paraiso Maya Portillo");
+        rutaList.add("Paraiso Maya Quintana. Roo");
+        rutaList.add("Paraiso Maya Nichupte");
+        rutaList.add("Playa Blanca");
+        rutaList.add("Portillo");
+        rutaList.add("Puerto Juarez");
+        rutaList.add("Sta Cecilia Portillo");
+        rutaList.add("Sta Cecilia Andres Q.roo");
+        rutaList.add("Sta Cecilia Nichupte");
+        rutaList.add("Talleres");
+        rutaList.add("Tierra Maya");
+        rutaList.add("Torito");
+        rutaList.add("Urbi Nichupte");
+        rutaList.add("Urbi Portillo");
+        rutaList.add("Urbi Andres Q.roo");
+        rutaList.add("Valle Verde Portillo");
+        rutaList.add("Valle Verde Andres Q.roo");
+        rutaList.add("Valle Verde Nichupte");
+        rutaList.add("Villas del Mar");
 
-            mSpinnerRuta.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
+        mSpinnerRuta.setAdapter(new ArrayAdapter<>(ARutaActivity.this, android.R.layout.simple_spinner_dropdown_item, rutaList));
         mSpinnerRuta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -242,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void registrarHora() {
 
-        SimpleDateFormat formato = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat formato = new SimpleDateFormat("hh:mm");
         Date horaRegistro = Calendar.getInstance().getTime();
 
         String horaa = formato.format(horaRegistro);
@@ -255,12 +263,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String input = intervaloInput.getText().toString();
                 if (input.length() == 0) {
-                    Toast.makeText(MainActivity.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ARutaActivity.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long millisInput = Long.parseLong(input) * 60000;
                 if (millisInput == 0) {
-                    Toast.makeText(MainActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ARutaActivity.this, "Please enter a positive number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 setTime(millisInput);
@@ -286,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void startTimer() {
         mEndTime = System.currentTimeMillis() + mtimeLeftInMilliSeconds;
         mCountDownTimer = new CountDownTimer(mtimeLeftInMilliSeconds, 1000) {
@@ -337,11 +346,11 @@ public class MainActivity extends AppCompatActivity {
             intervaloInput.setVisibility(View.INVISIBLE);
             btnSetIntervalo.setVisibility(View.INVISIBLE);
             btnReset.setVisibility(View.INVISIBLE);
-            btnStartPause.setText("Pause");
+            btnStartPause.setText("PAUSA");
         } else {
             intervaloInput.setVisibility(View.VISIBLE);
             btnSetIntervalo.setVisibility(View.VISIBLE);
-            btnStartPause.setText("Start");
+            btnStartPause.setText("INICIAR");
             if (mtimeLeftInMilliSeconds < 1000) {
                 btnStartPause.setVisibility(View.INVISIBLE);
             } else {
@@ -359,7 +368,13 @@ public class MainActivity extends AppCompatActivity {
         mStartTimeInMillis = milliseconds;
         resetTimer();
         // closeKeyboard();
-         intervaloInput.setText("");
+      /*
+        String timeLeftFormatted;
+        int minutes = (int) ((mtimeLeftInMilliSeconds / 1000) % 3600) / 60;
+        int seconds = (int) (mtimeLeftInMilliSeconds / 1000) % 60;
+        timeLeftFormatted = String.format(Locale.getDefault(),
+                "%02d:%02d", minutes, seconds);*/
+        intervaloInput.setText("");
     }
 
     private void closeKeyboard() {

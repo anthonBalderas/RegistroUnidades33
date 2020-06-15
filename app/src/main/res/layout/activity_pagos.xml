@@ -13,10 +13,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="Puede realizar su deposito en cualquier tienda OXXO"
+        android:text="Puede realizar su deposito en cualquier tienda OXXO con la siguiente referencia"
         android:textColor="@color/letras"
         android:textSize="24sp" />
 
@@ -26,18 +26,6 @@
         android:layout_gravity="center"
 
         android:src="@drawable/ic_oxxo_foreground"></ImageView>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:text="Con la siguiente referencia"
-        android:textColor="@color/letras"
-        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -63,8 +51,8 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="- Nombre \n - Correo electronico \n - Ficha de deposito"
         android:textColor="@color/materialyellow"

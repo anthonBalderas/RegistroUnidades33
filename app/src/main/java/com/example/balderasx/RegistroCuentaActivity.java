@@ -94,7 +94,7 @@ public class RegistroCuentaActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task2) {
                             if (task2.isSuccessful()) {
-                                Intent intentProfile = new Intent( RegistroCuentaActivity.this, MainActivity.class);
+                                Intent intentProfile = new Intent( RegistroCuentaActivity.this, ARutaActivity.class);
                                 startActivity(intentProfile);
                                 finish();
 

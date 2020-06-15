@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".RutaBActivity">
+    tools:context=".CRutaActivity">
 
 
     <LinearLayout
@@ -82,7 +82,7 @@
             android:layout_marginRight="10dp"
             android:backgroundTint="@color/colorAccent"
             android:hint="Intervalo entre salidas"
-            android:inputType="number"
+            android:inputType="time"
             android:maxLength="2"
             android:textColor="@color/letras"
             android:textColorHint="@color/letras" />
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/colorPrimary"
-            android:text="iniciar"
+            android:text="INICIAR"
             android:textColor="@color/colorAccent" />
 
 

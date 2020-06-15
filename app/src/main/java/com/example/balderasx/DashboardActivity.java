@@ -1,6 +1,7 @@
 package com.example.balderasx;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import static android.view.View.GONE;
 
 public class DashboardActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
@@ -28,7 +31,7 @@ public class DashboardActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        ImageView imgAddA,imgAddB,imgAddC,imgList,imgPay,imgLogOut;
+        final ImageView imgAddA, imgAddB, imgAddC, imgList, imgPay, imgLogOut;
 
 
         imgAddA = findViewById(R.id.btn_agregar_A);
@@ -42,14 +45,14 @@ public class DashboardActivity extends AppCompatActivity {
         imgAddA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent inToA = new Intent(DashboardActivity.this, MainActivity.class);
-            startActivity(inToA);
+                    Intent inToA = new Intent(DashboardActivity.this, ARutaActivity.class);
+                startActivity(inToA);
             }
         });
         imgAddB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent inToB = new Intent(DashboardActivity.this,Ruta44.class);
+                Intent inToB = new Intent(DashboardActivity.this, BRutaActivity.class);
                 startActivity(inToB);
             }
         });
@@ -57,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent inToC = new Intent(DashboardActivity.this, RutaBActivity.class);
+                    Intent inToC = new Intent(DashboardActivity.this, CRutaActivity.class);
                 startActivity(inToC);
 
             }
@@ -65,8 +68,9 @@ public class DashboardActivity extends AppCompatActivity {
         imgList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inToList = new Intent(DashboardActivity.this, RutasActivity.class);
-                startActivity(inToList);
+                Intent intoHistorial = new Intent(DashboardActivity.this, HistorialActivity.class);
+                startActivity(intoHistorial);
+
             }
         });
 
@@ -82,7 +86,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                        Intent inToLogin = new Intent(DashboardActivity.this, InicioSesionActivity.class);
+                Intent inToLogin = new Intent(DashboardActivity.this, InicioSesionActivity.class);
                 startActivity(inToLogin);
                 finish();
             }

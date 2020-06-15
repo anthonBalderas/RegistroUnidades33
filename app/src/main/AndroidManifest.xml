@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistroCuentaActivity"></activity>
+        <activity android:name=".HistorialActivity" />
+        <activity
+            android:name=".NavigationDrawerActivity"
+            android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegistroCuentaActivity" />
         <activity android:name=".InicioSesionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +23,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".PagosActivity" />
-        <activity android:name=".RutaBActivity" />
-        <activity android:name=".Ruta44" />
+        <activity android:name=".BRutaActivity" />
+        <activity android:name=".CRutaActivity" />
         <activity
             android:name=".RutasActivity"
             android:label="@string/title_activity_rutas"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DashboardActivity">
-
-        </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".ARutaActivity" />
     </application>
 
 </manifest>

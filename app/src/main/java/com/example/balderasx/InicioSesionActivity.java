@@ -58,7 +58,7 @@ public class InicioSesionActivity extends AppCompatActivity {
                 if (!email.isEmpty() && !pwd.isEmpty()) {
                     loginUser();
                 } else {
-                        Toast.makeText(InicioSesionActivity.this, "Complete los campos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InicioSesionActivity.this, "Complete los campos ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -75,14 +75,14 @@ public class InicioSesionActivity extends AppCompatActivity {
                     startActivity(intentProfile);
                     finish();
                 } else {
-                        Toast.makeText(InicioSesionActivity.this, "No se pudo iniciar sesión, compruebe los datos",
+                        Toast.makeText(InicioSesionActivity.this, "No se pudo iniciar sesión, compruebe los datos O Verifique su pago",
                             Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-/*    @Override
+   @Override
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()!= null){
@@ -90,5 +90,5 @@ public class InicioSesionActivity extends AppCompatActivity {
             startActivity(intentInicioSesion);
             finish();
         }
-    }*/
+    }
 }

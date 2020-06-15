@@ -36,4 +36,30 @@ private UnidadesContract(){
         public static final String COLUMN_TIMESTAMP = "timestamp";
 
     }
+
+    public static final class UnidadesEntry4 implements BaseColumns {
+        public static final String TABLE_NAME = "unidadesHistList";
+        public static final String COLUMN_UNIDAD = "unidad";
+        public static final String COLUMN_HORA = "hora";
+        public static final String COLUMN_RUTA = "ruta";
+        public static final String COLUMN_TIMESTAMP = "timestamp";
+
+    }
+    public static final class UnidadesEntry5 implements BaseColumns {
+        public static final String TABLE_NAME = "unidadesHist2List";
+        public static final String COLUMN_UNIDAD = "unidad";
+        public static final String COLUMN_HORA = "hora";
+        public static final String COLUMN_RUTA = "ruta";
+        public static final String COLUMN_TIMESTAMP = "timestamp";
+
+    }
+    public static final class UnidadesEntry6 implements BaseColumns {
+        public static final String TABLE_NAME = "unidadesHist3List";
+        public static final String COLUMN_UNIDAD = "unidad";
+        public static final String COLUMN_HORA = "hora";
+        public static final String COLUMN_RUTA = "ruta";
+        public static final String COLUMN_TIMESTAMP = "timestamp";
+
+    }
+
 }
